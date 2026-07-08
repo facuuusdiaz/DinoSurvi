@@ -19,15 +19,42 @@ public abstract class Entity {
 	protected int level;
 	protected float currentXP;
 	
-	public Entity() {}
+	public Entity(String name, float healthMax, float weightMax, float foodMax, float waterMax, float attackDamage) {
+		this.name = name;
+		this.healthMax = healthMax;
+		this.weightMax = weightMax;
+		this.foodMax = foodMax;
+		this.waterMax = waterMax;
+		this.attackDamage = attackDamage;
+		this.currentHealth = healthMax;
+		this.currentFood = foodMax;
+		this.currentWater = waterMax;
+		this.x = 0;
+		this.y = 0;		
+		this.speed = 0;
+		this.level = 1;
+		this.currentXP = 0;
+	}
 	
 	public void move() {}
 
 	public void attack(float amount) {}
 	
-	public void receiveDamage(float amount) {}
+	public void receiveDamage(float amount) {
+
+		this.currentHealth -= amount;
+		if(this.currentHealth <= 0){
+			death();
+		}
+	}
 	
-	public void recoverHealth(float amount) {}
+	public void recoverHealth(float amount) {
+
+		this.currentHealth += amount;
+		if(this.currentHealth >= this.healthMax){
+			this.currentHealth = this.healthMax;
+		}
+	}
 	
 	public void consumeEnergy() {}
 	
@@ -35,7 +62,13 @@ public abstract class Entity {
 	
 	public Object getHitbox() {}
 	
-	public boolean isAlive() {}
+	public boolean isAlive() {
+
+		if (this.currentHealth > 0){
+			return true;
+		}
+		return false;
+	}
 	
 	public abstract void death();
 	
