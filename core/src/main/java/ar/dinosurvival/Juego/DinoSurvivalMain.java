@@ -33,6 +33,7 @@ public class DinoSurvivalMain extends ApplicationAdapter {
         // Actualizamos la lógica del jugador
         float deltaTime = Gdx.graphics.getDeltaTime();
         player.update(deltaTime);
+        System.out.println("Posicion: X=" + player.getX() + " Y=" + player.getY());
 
         // 3. Movemos la cámara a la posición exacta del jugador.
         // La posición de la cámara es un vector 3D (X, Y, Z), por eso mandamos 0 en la Z.
