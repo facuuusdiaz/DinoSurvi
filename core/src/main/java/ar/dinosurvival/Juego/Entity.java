@@ -58,7 +58,23 @@ public abstract class Entity {
 	
 	public void consumeEnergy() {}
 	
-	public void consumeStat() {}
+	public void consumeStat(float foodAmount, float waterAmount) {
+
+		this.currentFood -= foodAmount;
+		this.currentWater -= waterAmount;
+	
+		if(this.currentFood < 0){
+
+			this.currentFood = 0;
+			receiveDamage(5.0f);
+		}
+
+		if(this.currentWater < 0){
+			this.currentWater = 0;
+			receiveDamage(5.0f);
+		}
+
+	}
 	
 	public Object getHitbox() {
 
