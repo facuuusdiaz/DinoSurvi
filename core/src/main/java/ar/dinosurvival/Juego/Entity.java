@@ -60,7 +60,10 @@ public abstract class Entity {
 	
 	public void consumeStat() {}
 	
-	public Object getHitbox() {}
+	public Object getHitbox() {
+
+		return null;
+	}
 	
 	public boolean isAlive() {
 
@@ -72,14 +75,20 @@ public abstract class Entity {
 	
 	public abstract void death();
 	
-	public String updateStat() {}
+	public String updateStat() {
+		return "";
+	}
 	
 	public void levelUp() {}
 	
 	public abstract void update(float elepsedTime);
 	
-	public float getX() {}
+	public float getX() {
+		return this.x;
+	}
 	
-	public float getY() {}
+	public float getY() {
+		return this.y;
+	}
 	
 }

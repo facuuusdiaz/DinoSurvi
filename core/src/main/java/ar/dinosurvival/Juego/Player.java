@@ -7,7 +7,11 @@ public class Player extends Entity{
 	protected Item [] hotbar;
 	protected Item itemInHand;
 	
-	public Player() {}
+	public Player() {
+
+		super("Player", 100, 100, 100, 100, 10);
+		this.mainInventory = new Inventory();
+	}
 	
 	@Override
 	public void death() {

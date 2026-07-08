@@ -11,13 +11,19 @@ public class Inventory {
 	
 	public Inventory() {}
 	
-	public boolean addItem(Item newItem) {}
+	public boolean addItem(Item newItem) {
+		return true;
+	}
 	
 	public void removeItem(int slotIndex) {}
 	
-	public boolean hasItem(String itemName, int amount) {}
+	public boolean hasItem(String itemName, int amount) {
+		return true;
+	}
 	
-	public List <Item> extractItems(String itemName, int amount) {}
+	public List <Item> extractItems(String itemName, int amount) {
+		return null;
+	}
 	
 	public void updateWeight() {}
 	
