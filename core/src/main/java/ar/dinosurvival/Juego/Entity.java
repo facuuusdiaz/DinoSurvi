@@ -36,7 +36,12 @@ public abstract class Entity {
 		this.currentXP = 0;
 	}
 	
-	public void move() {}
+	public void move(float direccionX, float direccionY, float elapsedTime) {
+
+		this.x += direccionX * this.speed * elapsedTime;
+		this.y += direccionY * this.speed * elapsedTime;
+
+	}
 
 	public void attack(float amount) {}
 	

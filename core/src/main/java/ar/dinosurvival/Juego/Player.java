@@ -1,4 +1,6 @@
 package ar.dinosurvival.Juego;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 
 public class Player extends Entity{
 
@@ -20,8 +22,36 @@ public class Player extends Entity{
 	}
 
 	@Override
-	public void update(float elepsedTime) {
-		// TODO Auto-generated method stub
+	public void update(float elapsedTime) {
+		
+		float direccionX = 0f;
+		float direccionY = 0f;
+
+		if(Gdx.input.isKeyPressed(Keys.W)) {
+			direccionY += 1f;
+		}
+
+		if(Gdx.input.isKeyPressed(Keys.S)){
+
+			direccionY -= 1f;
+		}
+
+		if(Gdx.input.isKeyPressed(Keys.A)) {
+			direccionX -= 1f;
+		}
+
+		if(Gdx.input.isKeyPressed(Keys.D)) {
+			direccionX += 1f;
+		}
+
+		//Logic to ensure that moving diagonally is not faster than moving normally.
+		if(direccionX != 0 || direccionY != 0) {
+		float length = (float) Math.sqrt(direccionX * direccionX + direccionY * direccionY);
+		direccionX /= length;
+		direccionY /= length;
+
+		move(direccionX, direccionY, elapsedTime);
+		}
 		
 	}
 	
