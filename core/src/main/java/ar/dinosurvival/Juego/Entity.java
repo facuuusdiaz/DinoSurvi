@@ -34,7 +34,7 @@ public abstract class Entity {
 		this.currentWater = waterMax;
 		this.x = 0;
 		this.y = 0;		
-		this.speed = 0;
+		this.speed = 200f;
 		this.level = 1;
 		this.currentXP = 0;
 	}
