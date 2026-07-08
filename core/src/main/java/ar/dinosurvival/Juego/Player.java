@@ -12,7 +12,7 @@ public class Player extends Entity{
 	public Player() {
 
 		super("Player", 100, 100, 100, 100, 10);
-		this.mainInventory = new Inventory();
+		this.mainInventory = new Inventory(20, 100.0f);
 	}
 	
 	@Override
