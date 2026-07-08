@@ -11,7 +11,7 @@ public class Dino extends Entity{
 	public Dino(){
 
 		super("Dino", 100, 100, 100, 100, 10);
-		this.saddleBag = new Inventory();
+		this.saddleBag = new Inventory(10, 50.0f);
 		this.tamed = false;
 		this.behavior = "Passive";
 		this.followPlayer = false;
