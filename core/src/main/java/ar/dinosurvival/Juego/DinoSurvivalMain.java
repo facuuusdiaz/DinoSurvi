@@ -2,6 +2,7 @@ package ar.dinosurvival.Juego;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -11,32 +12,42 @@ public class DinoSurvivalMain extends ApplicationAdapter {
     private SpriteBatch batch;
     private Texture image;
     private Player player;
+    private OrthographicCamera camera;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         image = new Texture("libgdx.png");
         player = new Player();
+
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
     }
 
     @Override
     public void render() {
-// 1. Limpiamos la pantalla (mantenemos ese color oscuro que tenías)
-    ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
+// Limpiamos la pantalla
+        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
 
-    // 2. Le pedimos a LibGDX el tiempo que pasó desde el último fotograma
-    // y actualizamos la lógica de movimiento de tu Player
-    float deltaTime = Gdx.graphics.getDeltaTime();
-    player.update(deltaTime);
+        // Actualizamos la lógica del jugador
+        float deltaTime = Gdx.graphics.getDeltaTime();
+        player.update(deltaTime);
 
-    // 3. Dibujamos en pantalla
-    batch.begin();
-    
-    // En vez de usar 'image' y números fijos (140, 210), 
-    // le pedimos la textura y la posición actual al jugador
-    batch.draw(player.getTexture(), player.getX(), player.getY());
-    
-    batch.end();
+        // 3. Movemos la cámara a la posición exacta del jugador.
+        // La posición de la cámara es un vector 3D (X, Y, Z), por eso mandamos 0 en la Z.
+        camera.position.set(player.getX(), player.getY(), 0);
+        
+        // ¡Fundamental! Actualizamos la cámara para que recalcule sus matrices matemáticas
+        camera.update();
+
+        // 4. Le avisamos al SpriteBatch que mire a través de los "ojos" de la cámara
+        batch.setProjectionMatrix(camera.combined);
+
+        // Dibujamos
+        batch.begin();
+        batch.draw(player.getTexture(), player.getX(), player.getY());
+        batch.end();
     }
 
     @Override
