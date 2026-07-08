@@ -1,6 +1,7 @@
 package ar.dinosurvival.Juego;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Texture;
 
 public class Player extends Entity{
 
@@ -13,6 +14,7 @@ public class Player extends Entity{
 
 		super("Player", 100, 100, 100, 100, 10);
 		this.mainInventory = new Inventory(20, 100.0f);
+		this.texture = new Texture("pj.png");
 	}
 	
 	@Override

@@ -1,4 +1,5 @@
 package ar.dinosurvival.Juego;
+import com.badlogic.gdx.graphics.Texture;
 
 public abstract class Entity {
 
@@ -18,6 +19,8 @@ public abstract class Entity {
 	protected float speed;
 	protected int level;
 	protected float currentXP;
+
+	protected Texture texture;
 	
 	public Entity(String name, float healthMax, float weightMax, float foodMax, float waterMax, float attackDamage) {
 		this.name = name;
@@ -111,5 +114,15 @@ public abstract class Entity {
 	public float getY() {
 		return this.y;
 	}
+
+	public Texture getTexture() {
+        return texture;
+    }
+
+	public void dispose() {
+        if (texture != null) {
+            texture.dispose();
+        }
+    }
 	
 }
